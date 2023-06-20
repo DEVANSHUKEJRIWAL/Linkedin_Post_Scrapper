@@ -193,11 +193,14 @@ data = {
 }
 
 
-json_data = json.dumps(data)
+csv_filename = "{}_posts.csv".format(company_name)
 
+with open(csv_filename, "w", newline="", encoding="utf-8") as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(data.keys())
+    writer.writerows(zip(*data.values()))
 
-with open("{}_posts.json".format(company_name), "w") as json_file:
-    json_file.write(json_data)
+print("Data saved: {}".format(csv_filename))
 
 time.sleep(10)
 
