@@ -33,7 +33,7 @@ driver.get('https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-ba
 elementID = driver.find_element(By.ID, "username")
 elementID.send_keys('username')
 elementID = driver.find_element(By.ID, "password")
-elementID.send_keys('password')
+elementID.send_keys('Paswword')
 elementID.submit()
 
 
@@ -76,6 +76,9 @@ linkedin_soup.prettify()
 
 containers = linkedin_soup.findAll("div", {"class": "occludable-update ember-view"})
 # container = containers[0].find("div","display-flex feed-shared-actor display-flex feed-shared-actor--with-control-menu ember-view")
+
+
+# In[36]:
 
 
 post_dates = []
@@ -143,7 +146,7 @@ for container in containers:
                                 media_links.append("None")
                                 media_type.append("Unknown")
 
-        # Getting Video Views. (The folling three lines prevents class name overlap)
+        # Getting Video Views. (The following three lines prevents class name overlap)
         view_container2 = set(container.findAll("li", {'class': ["social-details-social-counts__item"]}))
         view_container1 = set(container.findAll("li", {'class': ["social-details-social-counts__reactions",
                                                                  "social-details-social-counts__comments social-details-social-counts__item"]}))
@@ -174,6 +177,9 @@ for container in containers:
     except:
         pass
 
+# In[42]:
+
+
 # cleaned_dates = []
 # for i in post_dates:
 #     d = str(i[0:3]).replace('\n\n', '').replace('•','').replace(' ', '')
@@ -183,6 +189,8 @@ comment_count = []
 for i in post_comments:
     s = str(i).replace('comment', '').replace('s', '').replace(' ', '')
     comment_count += [s]
+
+# In[43]:
 
 
 # pd.set_option('max_colwidth', 1000)
@@ -199,6 +207,8 @@ data = {
 
 df = pd.DataFrame(data)
 df
+
+# In[39]:
 
 
 # df.to_csv("{}_posts.csv".format(company_name), encoding='utf-8', index=False)
